@@ -4,9 +4,7 @@ import { shipInGrid } from "./shipInGrid";
 // create the gameboard
 export class gameboard {
     constructor(rows, columns) {
-        this.rows = rows;
-        this.columns = columns;
-        this.grid = this.createGrid(this.rows, this.columns);
+        this.grid = this.createGrid(rows, columns);
         this.ships = [];
         this.hits = [];
         this.misses = [];

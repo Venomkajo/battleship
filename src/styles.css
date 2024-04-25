@@ -10,3 +10,32 @@ header
     text-align: center;
     font-size: 48px;
 }
+
+.boards
+{
+    color: white;
+    height: 900px;
+    width: 100%;
+    background-color: navy;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}
+
+.board
+{
+    height: 800px;
+    width: 45%;
+    background-color: lightcyan;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.board-tile
+{
+    outline: black solid 3px;
+    height: 100%;
+    width: 100%;
+}
