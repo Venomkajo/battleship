@@ -11,4 +11,11 @@ console.log(ship1);
 game.placeShip(ship1);
 console.log(game);
 
+game.receiveAttack(0,0);
+console.log(ship1);
 
+game.receiveAttack(0,0);
+console.log(ship1);
+
+game.receiveAttack(0,0);
+console.log(ship1);
