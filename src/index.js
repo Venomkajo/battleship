@@ -1,21 +1,16 @@
 import './styles.css';
 import { ship } from './ship.js';
 import { gameboard } from "./gameboard.js";
+import { player } from './player.js';
 
-let game = new gameboard(10, 10);
-console.log(game);
+let playerOne = new player('player', new gameboard(10, 10));
+console.log(playerOne);
 
-let ship1 = new ship(3, 0, 0, 'UP');
+let computerOne = new player('computer', new gameboard(10, 10));
+console.log(computerOne);
+
+let ship1 = new ship(3, 1, 1, "UP");
 console.log(ship1);
 
-game.placeShip(ship1);
-console.log(game);
-
-game.receiveAttack(0,0);
-console.log(ship1);
-
-game.receiveAttack(0,0);
-console.log(ship1);
-
-game.receiveAttack(0,0);
-console.log(ship1);
+playerOne.gameboard.placeShip(ship1);
+console.log(playerOne);
