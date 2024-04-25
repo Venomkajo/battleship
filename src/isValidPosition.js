@@ -1,3 +1,4 @@
+// check for valid position in grid
 export function isValidPosition(shipLength, row, column, direction) {
     if (direction === 'UP') {
         if (row <= 9 && row >= 0 && column <= 9 && column >= 0 && row + shipLength <= 9) {
