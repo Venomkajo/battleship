@@ -1,4 +1,5 @@
 import { isValidPosition } from "./isValidPosition";
+import { shipInGrid } from "./shipInGrid";
 
 // create the gameboard
 export class gameboard {
@@ -39,7 +40,7 @@ export class gameboard {
                     grid[row + i][column] = 'S';
                 }
                 
-                this.ships.push([shipLength, row, column, direction]);
+                this.ships.push(ship);
 
             }
         } else if (direction === 'RIGHT') {
@@ -48,7 +49,7 @@ export class gameboard {
                     grid[row][column + i] = 'S';
                 }
 
-                this.ships.push([shipLength, row, column, direction]);
+                this.ships.push(ship);
 
             }
         }
@@ -61,11 +62,32 @@ export class gameboard {
 
         if (row <= 9 && row >= 0 && column <= 9 && column >= 0){
             if (grid[row][column] === 'S'){
-                return true;
+                for (const ship of this.ships) { 
+                    if (shipInGrid(row, column, ship)){
+                        ship.hit();
+                        return true;
+                    }
+                }
             } else {
                 this.misses.push([row, column]);
                 return false;
             }
+        }
+    }
+
+    checkForWin(){
+        let count = 0;
+        ships = this.ships;
+        for (const ship of ships){
+            if (ship.sunk === true){
+                count++;
+            } 
+        }
+
+        if (count === 10){
+            return true;
+        } else {
+            return false;
         }
     }
 }

@@ -12,12 +12,13 @@ export class ship {
 
     // update when ship is hit
     hit() {
-        this.hitCount += 1;
+        this.hitCount++;
+        this.isSunk();
     }
 
     // check if ship sunk
     isSunk() {
-        if (this.hitCount >= this.length){
+        if (this.hitCount >= this.shipLength){
             this.sunk = true;
             return true;
         } else {
