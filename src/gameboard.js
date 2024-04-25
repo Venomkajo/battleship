@@ -7,7 +7,6 @@ export class gameboard {
         this.grid = this.createGrid(rows, columns);
         this.ships = [];
         this.hits = [];
-        this.misses = [];
     }
 
     // create the grid
@@ -59,23 +58,17 @@ export class gameboard {
     receiveAttack(row, column){
         const grid = this.grid;
 
-        if (row <= 9 && row >= 0 && column <= 9 && column >= 0){
+        if (row >= 0 && row <= 9 && column >= 0 && column <= 9){
             if (grid[row][column] === 'S'){
                 for (const ship of this.ships) { 
                     if (shipInGrid(row, column, ship)){
                         ship.hit();
-                        return true;
-                    }
-                }
-                for (const ship of this.ships) { 
-                    if (shipInGrid(row, column, ship)){
-                        ship.hit();
-                        this.hits.push([row, column]);
+                        grid[row][column] = 'H';
                         return true;
                     }
                 }
             } else {
-                this.misses.push([row, column]);
+                grid[row][column] = 'M';
                 return false;
             }
         }
