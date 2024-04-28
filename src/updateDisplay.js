@@ -1,84 +1,52 @@
 // update display
-export function updatePlayerGrid(grid, boardElement){
-    while (boardElement.firstChild){
-        boardElement.remove(boardElement.firstChild);
-    }
+export function updatePlayerGrid(grid){
 
-    for (let i = 0; i < grid.length; i++){
-        if (grid[i]){
-            for (let j = 0; j < grid[i].length; j++){
-                const boardTile = document.createElement('div');
-                boardTile.classList.add('board-tile');
-                boardTile.dataset.row = i;
-                boardTile.dataset.column = j;
+        let tiles = document.querySelectorAll('.board-tile.player');
+        tiles.forEach(boardTile => {
+            let row = boardTile.dataset.row;
+            let column = boardTile.dataset.column;
 
-                boardTile.addEventListener('click', function(){
-                    boardTile.style.backgroundColor = 'green';
-                });
-
-                switch (grid[i][j]) {
-                    case '0':
-                        boardTile.style.backgroundColor = 'lightcyan';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    case 'S':
-                        boardTile.style.backgroundColor = 'blue';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    case 'M':
-                        boardTile.style.backgroundColor = 'gray';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    case 'H':
-                        boardTile.style.backgroundColor = 'red';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
+            switch (grid[row][column]) {
+                case '0':
+                    boardTile.style.backgroundColor = 'lightcyan';
+                    break;
+                case 'S':
+                    boardTile.style.backgroundColor = 'blue';
+                    break;
+                case 'M':
+                    boardTile.style.backgroundColor = 'gray';
+                    break;
+                case 'H':
+                    boardTile.style.backgroundColor = 'red';
+                    break;
+                default:
+                    break;
+        } 
+        });
 }
 
-export function updateEnemyGrid(grid, boardElement){
-    while (boardElement.firstChild){
-        boardElement.remove(boardElement.firstChild);
-    }
+export function updateEnemyGrid(grid){
 
-    for (let i = 0; i < grid.length; i++){
-        if (grid[i]){
-            for (let j = 0; j < grid[i].length; j++){
-                const boardTile = document.createElement('div');
-                boardTile.classList.add('board-tile');
-                boardTile.dataset.row = i;
-                boardTile.dataset.column = j;
+    let tiles = document.querySelectorAll('.board-tile.enemy');
+    tiles.forEach(boardTile => {
+        let row = boardTile.dataset.row;
+        let column = boardTile.dataset.column;
 
-                boardTile.addEventListener('click', function(){
-                    boardTile.style.backgroundColor = 'green';
-                });
-
-                switch (grid[i][j]) {
-                    case '0':
-                        boardTile.style.backgroundColor = 'lightcyan';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    case 'S':
-                        boardTile.style.backgroundColor = 'lightcyan';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    case 'M':
-                        boardTile.style.backgroundColor = 'gray';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    case 'H':
-                        boardTile.style.backgroundColor = 'red';
-                        boardElement.appendChild(boardTile);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
+        switch (grid[row][column]) {
+            case '0':
+                boardTile.style.backgroundColor = 'lightcyan';
+                break;
+            case 'S':
+                boardTile.style.backgroundColor = 'lightcyan';
+                break;
+            case 'M':
+                boardTile.style.backgroundColor = 'gray';
+                break;
+            case 'H':
+                boardTile.style.backgroundColor = 'red';
+                break;
+            default:
+                break;
+    } 
+    });
 }
