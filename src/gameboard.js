@@ -67,8 +67,10 @@ export class gameboard {
                         return true;
                     }
                 }
-            } else {
+            } else if (grid[row][column] != 'H'){
                 grid[row][column] = 'M';
+                return true;
+            } else {
                 return false;
             }
         }

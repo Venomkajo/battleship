@@ -4,6 +4,7 @@ import { gameboard } from "./gameboard.js";
 import { player } from './player.js';
 import { updateEnemyGrid, updatePlayerGrid } from './updateDisplay.js';
 import { createGrid } from './createDisplay.js';
+import { computerTurn } from './gameLogic.js';
 
 let turn = true;
 
@@ -37,8 +38,14 @@ function addTileListener(){
     tiles.forEach(tile => {
         tile.addEventListener('click', function(){
             if (turn){
-                computerOne.gameboard.receiveAttack(parseInt(tile.dataset.row), parseInt(tile.dataset.column));
+                if (computerOne.gameboard.receiveAttack(parseInt(tile.dataset.row), parseInt(tile.dataset.column))){
+                    turn = false;
+                }
                 updateEnemyGrid(computerOne.gameboard.grid);
+                if (computerTurn(playerOne.gameboard)){
+                    turn = true;
+                }
+                updatePlayerGrid(playerOne.gameboard.grid);
             }
         });
     });
