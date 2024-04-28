@@ -3,6 +3,7 @@ export function createGrid(grid){
     createEnemyGrid(grid);
 }
 
+// create the display grid for player
 function createPlayerGrid(grid){
     const boardElement = document.querySelector('#boardOne');
 
@@ -19,7 +20,7 @@ function createPlayerGrid(grid){
     }
 }
 
-
+// create the display grid for enemy
 function createEnemyGrid(grid){
     const boardElement = document.querySelector('#boardTwo');
 

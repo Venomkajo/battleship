@@ -67,7 +67,7 @@ export class gameboard {
                         return true;
                     }
                 }
-            } else if (grid[row][column] != 'H'){
+            } else if (grid[row][column] === '0'){
                 grid[row][column] = 'M';
                 return true;
             } else {
@@ -76,6 +76,7 @@ export class gameboard {
         }
     }
 
+    // check if every ship sunk
     checkForWin(){
         let count = 0;
         let ships = this.ships;
@@ -90,5 +91,12 @@ export class gameboard {
         } else {
             return false;
         }
+    }
+
+    // clear data
+    clearBoard(){
+        this.grid = this.createGrid(10, 10);
+        this.ships = [];
+        this.hits = [];
     }
 }

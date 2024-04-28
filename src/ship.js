@@ -1,5 +1,5 @@
-// create ship class
 
+// create ship class
 export class ship {
     constructor(shipLength, row, column, direction) {
         this.shipLength = shipLength;

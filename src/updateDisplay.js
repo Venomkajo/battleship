@@ -25,6 +25,7 @@ export function updatePlayerGrid(grid){
         });
 }
 
+// update display but without ships visible
 export function updateEnemyGrid(grid){
 
     let tiles = document.querySelectorAll('.board-tile.enemy');
