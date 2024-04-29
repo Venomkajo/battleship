@@ -6,6 +6,7 @@ export function updatePlayerGrid(grid){
             let row = boardTile.dataset.row;
             let column = boardTile.dataset.column;
 
+            // choose a color based on the grid content
             switch (grid[row][column]) {
                 case '0':
                     boardTile.style.backgroundColor = 'lightcyan';
@@ -33,6 +34,7 @@ export function updateEnemyGrid(grid){
         let row = boardTile.dataset.row;
         let column = boardTile.dataset.column;
 
+        // choose a color based on the grid content
         switch (grid[row][column]) {
             case '0':
                 boardTile.style.backgroundColor = 'lightcyan';

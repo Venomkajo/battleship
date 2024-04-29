@@ -3,8 +3,8 @@ import { ship } from './ship.js';
 
 // create the gameboard
 export class gameboard {
-    constructor(rows, columns) {
-        this.grid = this.createGrid(rows, columns);
+    constructor() {
+        this.grid = this.createGrid(10, 10);
         this.ships = [];
     }
 
@@ -31,6 +31,7 @@ export class gameboard {
         let column = ship.column;
         let direction = ship.direction;
 
+        // if the ship position is valid, write 'S' on the grid and push the ship object
         if (direction === 'UP') {
             if (isValidPosition(shipLength, row, column, direction)) {
                 for (let i = 0; i < shipLength; i++) {
@@ -61,6 +62,7 @@ export class gameboard {
             let randomRow = '';
             let randomColumn = '';
             let randomDirection = '';
+            // generate a value until it's a valid one
             while (true) {
                 randomRow = Math.floor(Math.random() * 10);
                 randomColumn = Math.floor(Math.random() * 10);

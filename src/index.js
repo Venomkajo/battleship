@@ -9,10 +9,10 @@ import { computerTurn } from './gameLogic.js';
 let turn = true;
 
 // create gameboards
-let playerOne = new player('player', new gameboard(10, 10));
+let playerOne = new player('player', new gameboard());
 console.log(playerOne);
 
-let computerOne = new player('computer', new gameboard(10, 10));
+let computerOne = new player('computer', new gameboard());
 console.log(computerOne);
 
 // create enemy ships
@@ -22,6 +22,7 @@ createGrid(computerOne.gameboard.grid);
 let playerShips = playerOne.gameboard.generateRandomShips();
 createGrid(playerOne.gameboard.grid);
 
+// update display
 updatePlayerGrid(playerOne.gameboard.grid);
 updateEnemyGrid(computerOne.gameboard.grid);
 addTileListener();

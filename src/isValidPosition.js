@@ -25,12 +25,13 @@ export function shipInGrid(row, column, ship){
     }
 }
 
+// check if there is a ship near the proposed ship
 export function isShipNearby(grid, size, row, column, direction){
     if (grid[row][column] === 'S'){
         return true;
     }
 
-    let deltas = [];
+    let possibilities = [];
     let tempRow = 0;
     let tempColumn = 0;
 
@@ -38,34 +39,34 @@ export function isShipNearby(grid, size, row, column, direction){
         for (let i = 0; i < size; i++) {
             tempRow = row + i;
             tempColumn = column + i;
-            deltas.push([tempRow - 1, tempColumn - 1]);
-            deltas.push([tempRow - 1, tempColumn + 1]);
-            deltas.push([tempRow - 1, tempColumn]);
-            deltas.push([tempRow + 1, tempColumn]);
-            deltas.push([tempRow + 1, tempColumn - 1]);
-            deltas.push([tempRow + 1, tempColumn + 1]);
+            possibilities.push([tempRow - 1, tempColumn - 1]);
+            possibilities.push([tempRow - 1, tempColumn + 1]);
+            possibilities.push([tempRow - 1, tempColumn]);
+            possibilities.push([tempRow + 1, tempColumn]);
+            possibilities.push([tempRow + 1, tempColumn - 1]);
+            possibilities.push([tempRow + 1, tempColumn + 1]);
         } 
-        deltas.push([row + size + 1, column]);
-        deltas.push([row - 1, column]);
+        possibilities.push([row + size + 1, column]);
+        possibilities.push([row - 1, column]);
     } else if (direction === 'RIGHT'){
         for (let i = 0; i < size; i++) {
             tempRow = row + i;
             tempColumn = column + i;
-            deltas.push([tempRow - 1, tempColumn - 1]);
-            deltas.push([tempRow - 1, tempColumn + 1]);
-            deltas.push([tempRow, tempColumn - 1]);
-            deltas.push([tempRow, tempColumn + 1]);
-            deltas.push([tempRow + 1, tempColumn - 1]);
-            deltas.push([tempRow + 1, tempColumn + 1]);
+            possibilities.push([tempRow - 1, tempColumn - 1]);
+            possibilities.push([tempRow - 1, tempColumn + 1]);
+            possibilities.push([tempRow, tempColumn - 1]);
+            possibilities.push([tempRow, tempColumn + 1]);
+            possibilities.push([tempRow + 1, tempColumn - 1]);
+            possibilities.push([tempRow + 1, tempColumn + 1]);
         }
-        deltas.push([tempRow, column + size + 1]);
-        deltas.push([tempRow, column - 1]);
+        possibilities.push([tempRow, column + size + 1]);
+        possibilities.push([tempRow, column - 1]);
     }
 
-    for (const [deltaRow, deltaColumn] of deltas){
+    for (const [possibleRow, possibleColumn] of possibilities){
 
-        if (isValidPosition(size, deltaRow, deltaColumn, direction)){
-            if (grid[deltaRow][deltaColumn] === 'S'){
+        if (isValidPosition(size, possibleRow, possibleColumn, direction)){
+            if (grid[possibleRow][possibleColumn] === 'S'){
                 return true;
             }
         }
