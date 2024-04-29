@@ -1,12 +1,11 @@
-import { isValidPosition } from "./isValidPosition";
-import { shipInGrid } from "./shipInGrid";
+import { isValidPosition, shipInGrid, isShipNearby } from "./isValidPosition";
+import { ship } from './ship.js';
 
 // create the gameboard
 export class gameboard {
     constructor(rows, columns) {
         this.grid = this.createGrid(rows, columns);
         this.ships = [];
-        this.hits = [];
     }
 
     // create the grid
@@ -53,6 +52,36 @@ export class gameboard {
         }
     }
 
+    
+    // generate ships
+    generateRandomShips(){
+        let shipSizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
+        for (const size of shipSizes){
+            let grid = this.grid;
+            let randomRow = '';
+            let randomColumn = '';
+            let randomDirection = '';
+            while (true) {
+                randomRow = Math.floor(Math.random() * 10);
+                randomColumn = Math.floor(Math.random() * 10);
+                randomDirection = '';
+    
+                if (Math.random() <= 0.5){
+                    randomDirection = 'UP';
+                } else {
+                    randomDirection = 'RIGHT';
+                }
+    
+                if (!isShipNearby(grid, size, randomRow, randomColumn, randomDirection)){
+                    break;
+                }                
+            }
+
+            let newShip = new ship(size, randomRow, randomColumn, randomDirection);
+            this.placeShip(newShip);
+        }
+    }
+
 
     // receive an attack
     receiveAttack(row, column){
@@ -80,17 +109,20 @@ export class gameboard {
     checkForWin(){
         let count = 0;
         let ships = this.ships;
-        for (const ship of ships){
-            if (ship.sunk === true){
-                count++;
-            } 
+        if (ships.length >= 1){
+            for (const ship of ships){
+                if (ship.sunk === true){
+                    count++;
+                } 
+            }
+    
+            if (count === ships.length){
+                return true;
+            } else {
+                return false;
+            }
         }
-
-        if (count === ships.length){
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     // clear data

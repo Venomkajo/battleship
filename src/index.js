@@ -1,5 +1,4 @@
 import './styles.css';
-import { ship } from './ship.js';
 import { gameboard } from "./gameboard.js";
 import { player } from './player.js';
 import { updateEnemyGrid, updatePlayerGrid } from './updateDisplay.js';
@@ -16,17 +15,8 @@ console.log(playerOne);
 let computerOne = new player('computer', new gameboard(10, 10));
 console.log(computerOne);
 
-// create ships
-let ship1 = new ship(3, 1, 1, "UP");
-console.log(ship1);
-
-let ship2 = new ship(2, 7, 7, "UP");
-
-playerOne.gameboard.placeShip(ship1);
-computerOne.gameboard.placeShip(ship1);
-
-playerOne.gameboard.placeShip(ship2);
-computerOne.gameboard.placeShip(ship2);
+// create enemy ships
+let enemyShips = playerOne.gameboard.generateRandomShips();
 
 createGrid(playerOne.gameboard.grid);
 
@@ -59,6 +49,8 @@ function addTileListener(){
                 }
                 if (computerTurn(playerOne.gameboard)){
                     turn = true;
+                } else {
+                    alert('Error!');
                 }
                 updatePlayerGrid(playerOne.gameboard.grid);
                 if (playerOne.gameboard.checkForWin()){
