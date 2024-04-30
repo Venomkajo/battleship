@@ -39,3 +39,19 @@ header
     height: 100%;
     width: 100%;
 }
+
+.buttons
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+
+.buttons button
+{
+    height: 50px;
+    width: 25%;
+    font-size: 24px;
+}

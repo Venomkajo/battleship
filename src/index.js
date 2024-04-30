@@ -27,11 +27,19 @@ updatePlayerGrid(playerOne.gameboard.grid);
 updateEnemyGrid(computerOne.gameboard.grid);
 addTileListener();
 
+document.getElementById('randomButton').addEventListener('click', function(){
+    playerOne.gameboard.clearBoard();
+    playerOne.gameboard.generateRandomShips();
+    updatePlayerGrid(playerOne.gameboard.grid);
+});
+
+
 // add event listeners to tiles
 function addTileListener(){
     const tiles = document.querySelectorAll('.enemy');
     tiles.forEach(tile => {
         tile.addEventListener('click', function(){
+            document.getElementById('randomButton').disabled = 'true';
             if (turn){
                 do {
                     let attack = false;

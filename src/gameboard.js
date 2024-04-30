@@ -12,6 +12,7 @@ export class gameboard {
     createGrid(rows, columns) {
         const grid = [];
 
+        // create an rows x columns array filled with 0
         for (let i = 0; i < rows; i++) {
             grid[i] = [];
 
@@ -114,6 +115,7 @@ export class gameboard {
             
             // generate a value until it's a valid one
             while (true) {
+                // generate random values
                 randomRow = Math.floor(Math.random() * 10);
                 randomColumn = Math.floor(Math.random() * 10);
                 randomDirection = '';
@@ -181,6 +183,5 @@ export class gameboard {
     clearBoard(){
         this.grid = this.createGrid(10, 10);
         this.ships = [];
-        this.hits = [];
     }
 }
