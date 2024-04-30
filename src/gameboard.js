@@ -81,8 +81,10 @@ export class gameboard {
                 } else {
                     randomDirection = 'RIGHT';
                 }
-    
+                
+                // create a ship object with the random values
                 let newShip = new ship(size, randomRow, randomColumn, randomDirection);
+                // if the object gets placed break the loop
                 if(this.placeShip(newShip)){
                     break;
                 } else {
@@ -126,13 +128,14 @@ export class gameboard {
                 } 
             }
     
-            if (count === ships.length){
+            if (count >= ships.length){
                 return true;
             } else {
                 return false;
             }
+        } else {
+            return false;
         }
-        return false;
     }
 
     // clear data

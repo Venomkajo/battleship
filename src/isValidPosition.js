@@ -25,6 +25,7 @@ export function shipInGrid(row, column, ship){
     }
 }
 
+// check if neighboring squares contain a ship
 export function checkNearbySquares(grid, shipLength, row, column, direction){
     let initialRow = 0;
     let initialColumn = 0;

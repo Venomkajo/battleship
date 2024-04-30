@@ -70,6 +70,6 @@ function addTileListener(){
                 console.log(playerOne);
                 console.log(computerOne);
             }
-        });
-    });
+        })
+    })
 }
