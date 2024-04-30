@@ -41,34 +41,24 @@ function addTileListener(){
         tile.addEventListener('click', function(){
             document.getElementById('randomButton').disabled = 'true';
             if (turn){
-                do {
-                    let attack = false;
-
-                    if (computerOne.gameboard.receiveAttack(parseInt(tile.dataset.row), parseInt(tile.dataset.column))){
-                        attack = true;
+                if (computerOne.gameboard.receiveAttack(parseInt(tile.dataset.row), parseInt(tile.dataset.column))){
+                    turn = false;
+                    updateEnemyGrid(computerOne.gameboard.grid);
+                    if (computerOne.gameboard.checkForWin()){
+                        alert('Victory for the player!');
                     }
-
-                    if (attack){
-                        break;
+                    if (computerTurn(playerOne.gameboard)){
+                        turn = true;
+                    } else {
+                        alert('Error!');
                     }
-
-                } while (!attack);
-                turn = false;
-                updateEnemyGrid(computerOne.gameboard.grid);
-                if (computerOne.gameboard.checkForWin()){
-                    alert('Victory for the player!');
+                    updatePlayerGrid(playerOne.gameboard.grid);
+                    if (playerOne.gameboard.checkForWin()){
+                        alert('Victory for the computer!');
+                    }
+                    console.log(playerOne);
+                    console.log(computerOne);
                 }
-                if (computerTurn(playerOne.gameboard)){
-                    turn = true;
-                } else {
-                    alert('Error!');
-                }
-                updatePlayerGrid(playerOne.gameboard.grid);
-                if (playerOne.gameboard.checkForWin()){
-                    alert('Victory for the computer!');
-                }
-                console.log(playerOne);
-                console.log(computerOne);
             }
         })
     })
