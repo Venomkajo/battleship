@@ -1,4 +1,3 @@
-
 // create ship class
 export class ship {
     constructor(shipLength, row, column, direction) {

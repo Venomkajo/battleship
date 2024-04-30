@@ -1,4 +1,4 @@
-import { isValidPosition, shipInGrid, isShipNearby } from "./isValidPosition";
+import { isValidPosition, shipInGrid } from "./isValidPosition";
 import { ship } from './ship.js';
 
 // create the gameboard
@@ -30,25 +30,75 @@ export class gameboard {
         let row = ship.row;
         let column = ship.column;
         let direction = ship.direction;
+        let emptySpace = true;
 
-        // if the ship position is valid, write 'S' on the grid and push the ship object
+        // if ship is vertical
         if (direction === 'UP') {
             if (isValidPosition(shipLength, row, column, direction)) {
-                for (let i = 0; i < shipLength; i++) {
-                    grid[row + i][column] = 'S';
-                }
-                
-                this.ships.push(ship);
+                // get row + ship length
+                for (let z = 0; z < shipLength; z++){
+                    let initialRow = row + z;
 
+                    // get every nearby square and check if it's a ship
+                    for (let i = -1; i <= 1; i++) {
+                        for (let j = -1; j <= 1; j++) {
+                            let newRow = initialRow + i;
+                            let newColumn = column + j;
+                            if (isValidPosition(shipLength, newRow, newColumn, direction)){
+                                if (grid[newRow][newColumn] === 'S'){
+                                    emptySpace = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                // if ship doesn't touch another ship
+                if (emptySpace){
+                    // set the ship on the grid
+                    for (let i = 0; i < shipLength; i++) {
+                        grid[row + i][column] = 'S';
+                    }
+                    this.ships.push(ship);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
             }
+            // if ship is horizontal
         } else if (direction === 'RIGHT') {
             if (isValidPosition(shipLength, row, column, direction)) {
-                for (let i = 0; i < shipLength; i++) {
-                    grid[row][column + i] = 'S';
+                // get column + ship length
+                for (let z = 0; z < shipLength; z++){
+                    let initialColumn = column + z;
+
+                    // get every nearby square and check if it's a ship
+                    for (let i = -1; i <= 1; i++) {
+                        for (let j = -1; j <= 1; j++) {
+                            let newRow = row + i;
+                            let newColumn = initialColumn + j;
+                            if (isValidPosition(shipLength, newRow, newColumn, direction)){
+                                if (grid[newRow][newColumn] === 'S'){
+                                    emptySpace = false;
+                                }
+                            }
+                        }
+                    }
                 }
-
-                this.ships.push(ship);
-
+                // if ship doesn't touch another ship
+                if (emptySpace){
+                    // set the ship on the grid
+                    for (let i = 0; i < shipLength; i++) {
+                        grid[row][column + i] = 'S';
+                    }
+                    this.ships.push(ship);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
             }
         }
     }
@@ -58,10 +108,10 @@ export class gameboard {
     generateRandomShips(){
         let shipSizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
         for (const size of shipSizes){
-            let grid = this.grid;
             let randomRow = '';
             let randomColumn = '';
             let randomDirection = '';
+            
             // generate a value until it's a valid one
             while (true) {
                 randomRow = Math.floor(Math.random() * 10);
@@ -74,13 +124,13 @@ export class gameboard {
                     randomDirection = 'RIGHT';
                 }
     
-                if (!isShipNearby(grid, size, randomRow, randomColumn, randomDirection)){
+                let newShip = new ship(size, randomRow, randomColumn, randomDirection);
+                if(this.placeShip(newShip)){
                     break;
-                }                
+                } else {
+                    newShip = '';
+                }           
             }
-
-            let newShip = new ship(size, randomRow, randomColumn, randomDirection);
-            this.placeShip(newShip);
         }
     }
 
