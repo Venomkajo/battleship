@@ -16,10 +16,10 @@ let computerOne = new player('computer', new gameboard());
 console.log(computerOne);
 
 // create enemy ships
-let enemyShips = computerOne.gameboard.generateRandomShips();
+computerOne.gameboard.generateRandomShips();
 createGrid(computerOne.gameboard.grid);
 
-let playerShips = playerOne.gameboard.generateRandomShips();
+playerOne.gameboard.generateRandomShips();
 createGrid(playerOne.gameboard.grid);
 
 // update display

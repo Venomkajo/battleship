@@ -1,7 +1,7 @@
 // check for valid position in grid
 export function isValidPosition(shipLength, row, column, direction) {
     if (direction === 'UP') {
-        if (row <= 9 && row >= 0 && column <= 9 && column >= 0 && row + shipLength - 1 <= 9) {
+        if (row <= 9 && row >= 0 && column <= 9 && column >= 0 && row + shipLength <= 9) {
             return true;
         } else {
             return false;
@@ -23,4 +23,35 @@ export function shipInGrid(row, column, ship){
     } else {
         return false;
     }
+}
+
+export function checkNearbySquares(grid, shipLength, row, column, direction){
+    let initialRow = 0;
+    let initialColumn = 0;
+
+    for (let z = 0; z < shipLength; z++){
+
+        if (direction === "UP"){
+            initialRow = row + z;
+            initialColumn = column;
+        } else {
+            initialRow = row;
+            initialColumn = column + z;
+        }
+
+        // get every nearby square and check if it's a ship
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                let newRow = initialRow + i;
+                let newColumn = initialColumn + j;
+                if (isValidPosition(shipLength, newRow, newColumn, direction)){
+                    if (grid[newRow][newColumn] === 'S'){
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+    return true;
 }

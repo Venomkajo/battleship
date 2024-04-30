@@ -1,4 +1,4 @@
-import { isValidPosition, shipInGrid } from "./isValidPosition";
+import { isValidPosition, shipInGrid, checkNearbySquares } from "./isValidPosition";
 import { ship } from './ship.js';
 
 // create the gameboard
@@ -34,27 +34,12 @@ export class gameboard {
         let emptySpace = true;
 
         // if ship is vertical
-        if (direction === 'UP') {
-            if (isValidPosition(shipLength, row, column, direction)) {
-                // get row + ship length
-                for (let z = 0; z < shipLength; z++){
-                    let initialRow = row + z;
-
-                    // get every nearby square and check if it's a ship
-                    for (let i = -1; i <= 1; i++) {
-                        for (let j = -1; j <= 1; j++) {
-                            let newRow = initialRow + i;
-                            let newColumn = column + j;
-                            if (isValidPosition(shipLength, newRow, newColumn, direction)){
-                                if (grid[newRow][newColumn] === 'S'){
-                                    emptySpace = false;
-                                }
-                            }
-                        }
-                    }
-                }
-                // if ship doesn't touch another ship
-                if (emptySpace){
+        if (isValidPosition(shipLength, row, column, direction)) {
+            // get row + ship length
+            emptySpace = checkNearbySquares(grid, shipLength, row, column, direction);
+            // if ship doesn't touch another ship
+            if (emptySpace){
+                if (direction === 'UP'){
                     // set the ship on the grid
                     for (let i = 0; i < shipLength; i++) {
                         grid[row + i][column] = 'S';
@@ -62,41 +47,12 @@ export class gameboard {
                     this.ships.push(ship);
                     return true;
                 } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-            // if ship is horizontal
-        } else if (direction === 'RIGHT') {
-            if (isValidPosition(shipLength, row, column, direction)) {
-                // get column + ship length
-                for (let z = 0; z < shipLength; z++){
-                    let initialColumn = column + z;
-
-                    // get every nearby square and check if it's a ship
-                    for (let i = -1; i <= 1; i++) {
-                        for (let j = -1; j <= 1; j++) {
-                            let newRow = row + i;
-                            let newColumn = initialColumn + j;
-                            if (isValidPosition(shipLength, newRow, newColumn, direction)){
-                                if (grid[newRow][newColumn] === 'S'){
-                                    emptySpace = false;
-                                }
-                            }
-                        }
-                    }
-                }
-                // if ship doesn't touch another ship
-                if (emptySpace){
                     // set the ship on the grid
                     for (let i = 0; i < shipLength; i++) {
                         grid[row][column + i] = 'S';
                     }
                     this.ships.push(ship);
                     return true;
-                } else {
-                    return false;
                 }
             } else {
                 return false;
