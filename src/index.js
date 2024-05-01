@@ -28,9 +28,21 @@ updateEnemyGrid(computerOne.gameboard.grid);
 addTileListener();
 
 document.getElementById('randomButton').addEventListener('click', function(){
-    playerOne.gameboard.clearBoard();
-    playerOne.gameboard.generateRandomShips();
+    document.getElementById('randomButton').disabled = 'true';
+    playerOne.gameboard.generateNewBoard();
     updatePlayerGrid(playerOne.gameboard.grid);
+    document.getElementById('randomButton').disabled = '';
+});
+
+document.getElementById('resetButton').addEventListener('click', function(){
+    document.getElementById('resetButton').disabled = 'true';
+    document.getElementById('randomButton').disabled = 'true';
+    playerOne.gameboard.generateNewBoard();
+    updatePlayerGrid(playerOne.gameboard.grid);
+    computerOne.gameboard.generateNewBoard();
+    updateEnemyGrid(computerOne.gameboard.grid);
+    document.getElementById('resetButton').disabled = '';
+    document.getElementById('randomButton').disabled = '';
 });
 
 

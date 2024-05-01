@@ -143,4 +143,9 @@ export class gameboard {
         this.grid = this.createGrid(10, 10);
         this.ships = [];
     }
+
+    generateNewBoard(){
+        this.clearBoard();
+        this.generateRandomShips();
+    }
 }

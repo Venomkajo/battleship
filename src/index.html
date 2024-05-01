@@ -9,11 +9,18 @@
         <header>Battleship</header>
         <div>
             <div class="boards">
-                <div class="board" id="boardOne"></div>
-                <div class="board" id="boardTwo"></div>
+                <div class="board-container">
+                    <p>Player board:</p>
+                    <div class="board" id="boardOne"></div>
+                </div>
+                <div class="board-container">
+                    <p>Enemy board:</p>
+                    <div class="board" id="boardTwo"></div>
+                </div>
             </div>
             <div class="buttons">
-                <button type="submit" id="randomButton">Random ship position</button>
+                <button type="submit" id="randomButton">Randomize ships</button>
+                <button type="submit" id="resetButton">Reset board</button>
             </div>
         </div>
     </body>
