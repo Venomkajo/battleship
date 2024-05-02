@@ -46,6 +46,8 @@ document.getElementById('resetButton').addEventListener('click', function(){
 });
 
 
+let lastHit = '0';
+
 // add event listeners to tiles
 function addTileListener(){
     const tiles = document.querySelectorAll('.enemy');
@@ -59,7 +61,8 @@ function addTileListener(){
                     if (computerOne.gameboard.checkForWin()){
                         alert('Victory for the player!');
                     }
-                    if (computerTurn(playerOne.gameboard)){
+                    lastHit = computerTurn(playerOne.gameboard, lastHit);
+                    if (lastHit){
                         turn = true;
                     } else {
                         alert('Error!');
@@ -68,8 +71,6 @@ function addTileListener(){
                     if (playerOne.gameboard.checkForWin()){
                         alert('Victory for the computer!');
                     }
-                    console.log(playerOne);
-                    console.log(computerOne);
                 }
             }
         })

@@ -105,12 +105,12 @@ export class gameboard {
                     if (shipInGrid(row, column, ship)){
                         ship.hit();
                         grid[row][column] = 'H';
-                        return true;
+                        return 'H';
                     }
                 }
             } else if (grid[row][column] === '0'){
                 grid[row][column] = 'M';
-                return true;
+                return '0';
             } else {
                 return false;
             }
