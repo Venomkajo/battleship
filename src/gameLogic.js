@@ -1,5 +1,6 @@
 // basic computer logic
 export function computerTurn(gameboard, lastHit){
+    const ships = gameboard.ships;
     let randomRow = '';
     let randomColumn = '';
     let currentHit = '';

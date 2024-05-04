@@ -39,7 +39,7 @@ export class gameboard {
             emptySpace = checkNearbySquares(grid, shipLength, row, column, direction);
             // if ship doesn't touch another ship
             if (emptySpace){
-                if (direction === 'UP'){
+                if (direction === 'DOWN'){
                     // set the ship on the grid
                     for (let i = 0; i < shipLength; i++) {
                         grid[row + i][column] = 'S';
@@ -77,7 +77,7 @@ export class gameboard {
                 randomDirection = '';
     
                 if (Math.random() <= 0.5){
-                    randomDirection = 'UP';
+                    randomDirection = 'DOWN';
                 } else {
                     randomDirection = 'RIGHT';
                 }
