@@ -9,6 +9,8 @@ header
 {
     text-align: center;
     font-size: 48px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .boards
