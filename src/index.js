@@ -1,4 +1,4 @@
 import './styles.css';
-import { loadVsComputer } from './loadVsComputer';
+import { loadVsComputer } from './loadVsComputer.js';
 
 loadVsComputer();
