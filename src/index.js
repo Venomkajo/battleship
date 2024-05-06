@@ -73,6 +73,7 @@ function addTileListener(){
                     }
                 }
             }
+            console.log(computerOne);
         })
     })
 }

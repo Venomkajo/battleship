@@ -1,4 +1,4 @@
-import { isValidPosition, shipInGrid, checkNearbySquares } from "./isValidPosition";
+import { isValidPosition, checkNearbySquares } from "./isValidPosition";
 import { ship } from './ship.js';
 
 // create the gameboard
@@ -101,11 +101,15 @@ export class gameboard {
 
         if (row >= 0 && row <= 9 && column >= 0 && column <= 9){
             if (grid[row][column] === 'S'){
+                // for every ship in ships
                 for (const ship of this.ships) { 
-                    if (shipInGrid(row, column, ship)){
-                        ship.hit();
-                        grid[row][column] = 'H';
-                        return 'H';
+                    // for every position that the ship takes
+                    for (const position of ship.positions){
+                        if (position[0] === row && position[1] === column){
+                            ship.hit();
+                            grid[row][column] = 'H';
+                            return 'H';
+                        }
                     }
                 }
             } else if (grid[row][column] === '0'){

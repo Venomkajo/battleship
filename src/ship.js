@@ -6,6 +6,7 @@ export class ship {
         this.column = column;
         this.direction = direction;
         this.hitCount = 0;
+        this.positions = this.getShipPosition();
         this.sunk = false;
     }
 
@@ -23,5 +24,19 @@ export class ship {
         } else {
             return false;
         }
+    }
+
+    getShipPosition() {
+        let positions = [];
+        if (this.direction === 'DOWN'){
+            for (let i = 0; i < this.shipLength; i++) {
+                positions.push([this.row + i, this.column]);
+            }
+        } else {
+            for (let i = 0; i < this.shipLength; i++) {
+                positions.push([this.row, this.column + i]);
+            }
+        }
+        return positions;
     }
 }
