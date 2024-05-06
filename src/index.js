@@ -1,6 +1,4 @@
 import './styles.css';
-import { loadVsComputer } from './loadVsComputer.js';
-import { createVsComputer } from './createVsComputer.js';
+import { createStartMenu } from './createStartMenu';
 
-createVsComputer();
-loadVsComputer();
+createStartMenu();
