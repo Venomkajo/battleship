@@ -16,14 +16,10 @@ export function computerTurn(gameboard, lastHit){
             for (const possibility of possibilities){
                 const X = lastRow + possibility[0];
                 const Y = lastColumn + possibility[1];
-                if (X >= 0 && X <= 9 && Y >= 0 && Y <= 9){
-                    if (gameboard.grid[X][Y] === '0' || gameboard.grid[X][Y] === 'S'){
-                        currentHit = gameboard.receiveAttack(X, Y);
-                    }
+                currentHit = gameboard.receiveAttack(X, Y);
 
-                    if (currentHit){
-                        return [X, Y, currentHit];
-                    }
+                if (currentHit){
+                    return [X, Y, currentHit];
                 }
             }
         }
