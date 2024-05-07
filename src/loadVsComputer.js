@@ -3,10 +3,14 @@ import { player } from './player.js';
 import { updateEnemyGrid, updatePlayerGrid } from './updateDisplay.js';
 import { createGrid } from './createDisplay.js';
 import { computerTurn } from './gameLogic.js';
+import { createVsComputer } from "./createVsComputer.js";
 
+// main function
 export function loadVsComputer(){
 
-    // main function
+    // create the html
+    createVsComputer();
+
     let turn = true;
 
     // create gameboards
@@ -16,7 +20,7 @@ export function loadVsComputer(){
     let computerOne = new player('computer', new gameboard());
     console.log(computerOne);
 
-    // create enemy ships
+    // create enemy and player ships
     computerOne.gameboard.generateRandomShips();
     createGrid(computerOne.gameboard.grid);
 
@@ -29,19 +33,29 @@ export function loadVsComputer(){
     addTileListener();
 
     document.getElementById('randomButton').addEventListener('click', function(){
+        // disable button in case of low-end pc
         document.getElementById('randomButton').disabled = 'true';
+
+        // randomize the player's board
         playerOne.gameboard.generateNewBoard();
         updatePlayerGrid(playerOne.gameboard.grid);
+
+        // enable button again
         document.getElementById('randomButton').disabled = '';
     });
 
     document.getElementById('resetButton').addEventListener('click', function(){
+        // disable buttons in case of low-end pc
         document.getElementById('resetButton').disabled = 'true';
         document.getElementById('randomButton').disabled = 'true';
+
+        // generate new boards
         playerOne.gameboard.generateNewBoard();
         updatePlayerGrid(playerOne.gameboard.grid);
         computerOne.gameboard.generateNewBoard();
         updateEnemyGrid(computerOne.gameboard.grid);
+
+        // enable buttons again
         document.getElementById('resetButton').disabled = '';
         document.getElementById('randomButton').disabled = '';
     });

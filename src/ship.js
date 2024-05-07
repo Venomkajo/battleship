@@ -26,6 +26,7 @@ export class ship {
         }
     }
 
+    // get every ship position as row, column
     getShipPosition() {
         let positions = [];
         if (this.direction === 'DOWN'){

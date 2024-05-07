@@ -40,11 +40,10 @@ export function createVsComputer(){
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('buttons');
     const randomButton = document.createElement('button');
-    randomButton.setAttribute('type', 'submit');
     randomButton.id = 'randomButton';
     randomButton.textContent = 'Randomize ships';
+
     const resetButton = document.createElement('button');
-    resetButton.setAttribute('type', 'submit');
     resetButton.id = 'resetButton';
     resetButton.textContent = 'Reset board';
     buttonsDiv.appendChild(randomButton);
@@ -54,5 +53,4 @@ export function createVsComputer(){
     document.body.appendChild(header);
     document.body.appendChild(boardsDiv);
     document.body.appendChild(buttonsDiv);
-
 }

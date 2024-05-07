@@ -1,7 +1,7 @@
-import { createVsComputer } from "./createVsComputer";
 import { loadVsComputer } from "./loadVsComputer";
 
 export function createStartMenu() {
+    // get html items
     const body = document.querySelector('body');
     const header = document.createElement('header');
     const container = document.createElement('div');
@@ -12,24 +12,32 @@ export function createStartMenu() {
         body.removeChild(body.firstChild);
     }
 
+    // add classes and text to html items
     header.textContent = 'Choose the gamemode!';
     container.classList.add('container');
     playerVsComputerButton.textContent = 'Player VS Computer';
     playerVsComputerButton.classList.add('start-button');
-    otherButton.textContent = '-----';
+    otherButton.textContent = 'Randomize the color!';
     otherButton.classList.add('start-button');
 
+    // append the items
     container.appendChild(playerVsComputerButton);
     container.appendChild(otherButton);
     body.appendChild(header);
     body.appendChild(container);
 
+    // load the player vs computer
     playerVsComputerButton.addEventListener('click', function() {
-        createVsComputer();
         loadVsComputer();
     });
 
     otherButton.addEventListener('click', function() {
-        alert('-----');
+        const red = Math.floor(Math.random() * 256);
+        const green = Math.floor(Math.random() * 256);
+        const blue = Math.floor(Math.random() * 256);
+
+        const color = `rgb(${red},${green},${blue})`;
+
+        body.style.backgroundColor = color;
     });
 }
