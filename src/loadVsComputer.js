@@ -68,7 +68,9 @@ export function loadVsComputer(){
         tiles.forEach(tile => {
             tile.addEventListener('click', function(){
                 document.getElementById('randomButton').disabled = 'true';
+                // if it's the player's turn
                 if (turn){
+                    // if an attack was received
                     if (computerOne.gameboard.receiveAttack(parseInt(tile.dataset.row), parseInt(tile.dataset.column))){
                         turn = false;
                         updateEnemyGrid(computerOne.gameboard.grid);
