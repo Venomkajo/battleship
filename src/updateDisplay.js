@@ -1,7 +1,7 @@
 // update display
-export function updatePlayerGrid(grid){
+export function updatePlayerGrid(grid, querySelect){
 
-        let tiles = document.querySelectorAll('.board-tile.player');
+        let tiles = document.querySelectorAll(querySelect);
         tiles.forEach(boardTile => {
             let row = boardTile.dataset.row;
             let column = boardTile.dataset.column;
@@ -27,9 +27,9 @@ export function updatePlayerGrid(grid){
 }
 
 // update display but without ships visible
-export function updateEnemyGrid(grid){
+export function updateEnemyGrid(grid, querySelect){
 
-    let tiles = document.querySelectorAll('.board-tile.enemy');
+    let tiles = document.querySelectorAll(querySelect);
     tiles.forEach(boardTile => {
         let row = boardTile.dataset.row;
         let column = boardTile.dataset.column;
@@ -51,5 +51,13 @@ export function updateEnemyGrid(grid){
             default:
                 break;
     } 
+    });
+}
+
+// make grids all the same color for player vs player
+export function hideDisplay(querySelect){
+    let tiles = document.querySelectorAll(querySelect);
+    tiles.forEach(boardTile => {
+        boardTile.style.backgroundColor = 'lightcyan';
     });
 }

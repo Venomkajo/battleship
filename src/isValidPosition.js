@@ -37,6 +37,7 @@ export function checkNearbySquares(grid, shipLength, row, column, direction){
                 let newRow = 0;
                 let newColumn = 0;
 
+                // based on direction modify either column or row
                 if (direction === "DOWN") {
                     newRow = initialRow + i;
                     newColumn = initialColumn + j;

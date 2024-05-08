@@ -105,6 +105,7 @@ export class gameboard {
                 for (const ship of this.ships) { 
                     // for every position that the ship takes
                     for (const position of ship.positions){
+                        // if attack matches ship position update the board and hit count
                         if (position[0] === row && position[1] === column){
                             ship.hit();
                             grid[row][column] = 'H';
@@ -113,6 +114,7 @@ export class gameboard {
                     }
                 }
             } else if (grid[row][column] === '0'){
+                // if not a ship update to miss
                 grid[row][column] = 'M';
                 return '0';
             } else {
@@ -148,6 +150,7 @@ export class gameboard {
         this.ships = [];
     }
 
+    // generate completely new and randomized board
     generateNewBoard(){
         this.clearBoard();
         this.generateRandomShips();

@@ -4,11 +4,13 @@ export function computerTurn(gameboard, lastHit){
     let currentHit = '';
     let possibilities = '';
 
+    // if last hit exist, the function ran before
     if (lastHit){
         let lastRow = lastHit[0];
         let lastColumn = lastHit[1];
         let lastResult = lastHit[2];
 
+        // if last result was a hit use it for logic
         if (lastResult === 'H'){
 
             for (const ship of ships){
@@ -44,6 +46,7 @@ export function computerTurn(gameboard, lastHit){
         }
     }
 
+    // if last hit was a miss fire at random
     return fireAtRandom(gameboard);
 }
 

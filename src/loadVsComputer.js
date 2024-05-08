@@ -21,16 +21,16 @@ export function loadVsComputer(){
     console.log(computerOne);
 
     // create enemy and player ships
-    computerOne.gameboard.generateRandomShips();
-    createGrid(computerOne.gameboard.grid);
-
     playerOne.gameboard.generateRandomShips();
+    computerOne.gameboard.generateRandomShips();
     createGrid(playerOne.gameboard.grid);
 
     // update display
-    updatePlayerGrid(playerOne.gameboard.grid);
-    updateEnemyGrid(computerOne.gameboard.grid);
+    updatePlayerGrid(playerOne.gameboard.grid, '.player');
+    updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
     addTileListener();
+
+    
 
     document.getElementById('randomButton').addEventListener('click', function(){
         // disable button in case of low-end pc
@@ -38,7 +38,7 @@ export function loadVsComputer(){
 
         // randomize the player's board
         playerOne.gameboard.generateNewBoard();
-        updatePlayerGrid(playerOne.gameboard.grid);
+        updatePlayerGrid(playerOne.gameboard.grid, '.player');
 
         // enable button again
         document.getElementById('randomButton').disabled = '';
@@ -51,14 +51,15 @@ export function loadVsComputer(){
 
         // generate new boards
         playerOne.gameboard.generateNewBoard();
-        updatePlayerGrid(playerOne.gameboard.grid);
+        updatePlayerGrid(playerOne.gameboard.grid), '.player';
         computerOne.gameboard.generateNewBoard();
-        updateEnemyGrid(computerOne.gameboard.grid);
+        updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
 
         // enable buttons again
         document.getElementById('resetButton').disabled = '';
         document.getElementById('randomButton').disabled = '';
     });
+
 
     let lastHit = '0';
 
@@ -73,17 +74,21 @@ export function loadVsComputer(){
                     // if an attack was received
                     if (computerOne.gameboard.receiveAttack(parseInt(tile.dataset.row), parseInt(tile.dataset.column))){
                         turn = false;
-                        updateEnemyGrid(computerOne.gameboard.grid);
+                        
+                        updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
                         if (computerOne.gameboard.checkForWin()){
                             alert('Victory for the player!');
                         }
+
+                        // if the computer move is successful move forward
                         lastHit = computerTurn(playerOne.gameboard, lastHit);
                         if (lastHit){
                             turn = true;
                         } else {
                             alert('Error!');
                         }
-                        updatePlayerGrid(playerOne.gameboard.grid);
+
+                        updatePlayerGrid(playerOne.gameboard.grid, '.player');
                         if (playerOne.gameboard.checkForWin()){
                             alert('Victory for the computer!');
                         }

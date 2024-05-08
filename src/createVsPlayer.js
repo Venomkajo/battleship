@@ -1,5 +1,5 @@
-export function createVsComputer(){
-   
+export function createVsPlayer(){
+
     // remove every item
     while (document.body.firstChild){
         document.body.removeChild(document.body.firstChild);
@@ -18,7 +18,7 @@ export function createVsComputer(){
     playerBoardContainer.classList.add('board-container');
 
     const playerBoardText = document.createElement('p');
-    playerBoardText.textContent = 'Player board:';
+    playerBoardText.textContent = 'Player 1 board:';
 
     const playerBoard = document.createElement('div');
     playerBoard.classList.add('board');
@@ -32,20 +32,19 @@ export function createVsComputer(){
     enemyBoardContainer.classList.add('board-container');
 
     const enemyBoardText = document.createElement('p');
-    enemyBoardText.textContent = 'Enemy board:';
+    enemyBoardText.textContent = 'Player 2 board:';
 
     const enemyBoard = document.createElement('div');
     enemyBoard.classList.add('board');
     enemyBoard.id = 'boardTwo';
-
-    // append items
+    
     enemyBoardContainer.appendChild(enemyBoardText);
     enemyBoardContainer.appendChild(enemyBoard);
 
     boardsDiv.appendChild(playerBoardContainer);
     boardsDiv.appendChild(enemyBoardContainer);
 
-    // create buttons
+    // Create buttons div
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('buttons');
 
@@ -53,15 +52,19 @@ export function createVsComputer(){
     randomButton.id = 'randomButton';
     randomButton.textContent = 'Randomize ships';
 
+    const switchButton = document.createElement('button');
+    switchButton.id = 'switchButton';
+    switchButton.textContent = 'Switch player';
+
     const resetButton = document.createElement('button');
     resetButton.id = 'resetButton';
     resetButton.textContent = 'Reset board';
 
-    // append buttons
     buttonsDiv.appendChild(randomButton);
+    buttonsDiv.appendChild(switchButton);
     buttonsDiv.appendChild(resetButton);
 
-    // append all elements to body
+    // Append all elements to body
     document.body.appendChild(header);
     document.body.appendChild(boardsDiv);
     document.body.appendChild(buttonsDiv);
