@@ -35,6 +35,10 @@ export function loadVsPlayer(){
         // randomize the player's board
         playerOne.gameboard.generateNewBoard();
         updatePlayerGrid(playerOne.gameboard.grid, '.player');
+        playerTwo.gameboard.generateNewBoard();
+        updateEnemyGrid(playerTwo.gameboard.grid, '.enemy');
+        turn = true;
+        allowed = true;
     
         // enable button again
         document.getElementById('randomButton').disabled = '';
@@ -49,7 +53,9 @@ export function loadVsPlayer(){
         playerOne.gameboard.generateNewBoard();
         updatePlayerGrid(playerOne.gameboard.grid, '.player');
         playerTwo.gameboard.generateNewBoard();
-        updatePlayerGrid(playerTwo.gameboard.grid, '.enemy');
+        updateEnemyGrid(playerTwo.gameboard.grid, '.enemy');
+        turn = true;
+        allowed = true;
     
         // enable buttons again
         document.getElementById('resetButton').disabled = '';
