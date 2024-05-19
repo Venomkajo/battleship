@@ -61,7 +61,7 @@ export function loadVsComputer(){
     });
 
 
-    let lastHit = '';
+    let hitInfo = '';
 
     // add event listeners to tiles
     function addTileListener(){
@@ -81,8 +81,8 @@ export function loadVsComputer(){
                         }
 
                         // if the computer move is successful move forward
-                        lastHit = computerTurn(playerOne.gameboard, lastHit);
-                        if (lastHit){
+                        hitInfo = computerTurn(playerOne.gameboard, hitInfo);
+                        if (hitInfo){
                             turn = true;
                         } else {
                             alert('Error!');
