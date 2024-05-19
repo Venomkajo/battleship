@@ -1,3 +1,5 @@
+import { hitInformation } from "./hitInformation";
+
 // basic computer logic
 export function computerTurn(gameboard, lastHit){
     const ships = gameboard.ships;
@@ -6,13 +8,13 @@ export function computerTurn(gameboard, lastHit){
 
     // if last hit exist, the function ran before
     if (lastHit){
-        let lastRow = lastHit[0];
-        let lastColumn = lastHit[1];
-        let lastResult = lastHit[2];
+        let lastRow = lastHit.row;
+        let lastColumn = lastHit.column;
+        let lastResult = lastHit.hit;
+        let lastShip = lastHit.ship;
 
         // if last result was a hit use it for logic
         if (lastResult === 'H'){
-
             for (const ship of ships){
                 if (ship.sunk && ship.hitCount >= 2){
                     for (const position of ship.positions){
@@ -40,7 +42,7 @@ export function computerTurn(gameboard, lastHit){
                 currentHit = gameboard.receiveAttack(X, Y);
 
                 if (currentHit){
-                    return [X, Y, currentHit];
+                    return new hitInformation(currentHit, X, Y, lastShip);
                 }
             }
         }
@@ -53,6 +55,7 @@ export function computerTurn(gameboard, lastHit){
 function fireAtRandom(gameboard){
     let randomRow = '';
     let randomColumn = '';
+    let selectedShip = '';
 
     while (true){
         randomRow = Math.floor(Math.random() * 10);
@@ -60,7 +63,15 @@ function fireAtRandom(gameboard){
         
         let currentHit = gameboard.receiveAttack(randomRow, randomColumn);
         if (currentHit){
-            return [randomRow, randomColumn, currentHit];
+            shipLoop: for (const ship of gameboard.ships){
+                for (const position of ship.positions){
+                    if (position[0] === randomRow && position[1] === randomColumn){
+                        selectedShip = ship;
+                        break shipLoop;
+                    }
+                }
+            }
+            return new hitInformation(currentHit, randomRow, randomColumn, selectedShip);
         }
     }
 }

@@ -61,7 +61,7 @@ export function loadVsComputer(){
     });
 
 
-    let lastHit = '0';
+    let lastHit = '';
 
     // add event listeners to tiles
     function addTileListener(){
