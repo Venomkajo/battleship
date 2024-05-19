@@ -78,6 +78,11 @@ export function loadVsComputer(){
                         updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
                         if (computerOne.gameboard.checkForWin()){
                             alert('Victory for the player!');
+                            playerOne.gameboard.generateNewBoard();
+                            computerOne.gameboard.generateNewBoard();
+                            updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
+                            updatePlayerGrid(playerOne.gameboard.grid, '.player');
+                            return;
                         }
 
                         // if the computer move is successful move forward
@@ -91,6 +96,11 @@ export function loadVsComputer(){
                         updatePlayerGrid(playerOne.gameboard.grid, '.player');
                         if (playerOne.gameboard.checkForWin()){
                             alert('Victory for the computer!');
+                            playerOne.gameboard.generateNewBoard();
+                            computerOne.gameboard.generateNewBoard();
+                            updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
+                            updatePlayerGrid(playerOne.gameboard.grid, '.player');
+                            return;
                         }
                     }
                 }

@@ -38,13 +38,8 @@ export function checkNearbySquares(grid, shipLength, row, column, direction){
                 let newColumn = 0;
 
                 // based on direction modify either column or row
-                if (direction === "DOWN") {
-                    newRow = initialRow + i;
-                    newColumn = initialColumn + j;
-                } else {
-                    newRow = initialRow + j;
-                    newColumn = initialColumn + i;
-                }
+                newRow = initialRow + i;
+                newColumn = initialColumn + j;
 
                 if (isValidPosition(1, newRow, newColumn, direction)){
                     if (grid[newRow][newColumn] === 'S'){

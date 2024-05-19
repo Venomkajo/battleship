@@ -109,6 +109,7 @@ export class gameboard {
                         if (position[0] === row && position[1] === column){
                             ship.hit();
                             grid[row][column] = 'H';
+                            this.updateSunkenArea(row, column);
                             return 'H';
                         }
                     }
@@ -141,6 +142,38 @@ export class gameboard {
             }
         } else {
             return false;
+        }
+    }
+
+    updateSunkenArea(row, column){
+        let ship = null;
+        for (const tempShip of this.ships){
+            for (const position of tempShip.positions){
+                if (position[0] === row && position[1] === column){
+                    ship = tempShip;
+                    break;
+                }
+            }
+        }
+
+        if (ship && ship.sunk === true){
+            for (let i = 0; i < ship.positions.length; i++) {
+                const X = ship.positions[i][0];
+                const Y = ship.positions[i][1];
+                
+                for (let j = -1; j <= 1; j++) {
+                    for (let k = -1; k <= 1; k++){
+                        const newX = X + j;
+                        const newY = Y + k;
+
+                        if (newX <= 9 && newX >= 0 && newY <= 9 && newY >= 0){
+                            if (this.grid[newX][newY] === '0'){
+                                this.grid[newX][newY] = 'M';
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
