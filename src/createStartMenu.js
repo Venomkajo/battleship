@@ -16,47 +16,40 @@ export function createStartMenu() {
     container.classList.add('container');
 
     // create player vs computer button
-    const playerVsComputerButton = document.createElement('button');
-    playerVsComputerButton.textContent = 'Player VS Computer';
-    playerVsComputerButton.classList.add('start-button');
+    const playerVsComputerButtonNormal = document.createElement('button');
+    playerVsComputerButtonNormal.textContent = 'Player VS Computer - NORMAL';
+    playerVsComputerButtonNormal.classList.add('start-button');
 
+    // create player vs computer easy button
+    const playerVsComputerButtonEasy = document.createElement('button');
+    playerVsComputerButtonEasy.textContent = 'Player VS Computer - EASY';
+    playerVsComputerButtonEasy.classList.add('start-button');
+    
     // create player vs player button
     const playerVsPlayerButton = document.createElement('button');
     playerVsPlayerButton.textContent = 'Player VS Player';
     playerVsPlayerButton.classList.add('start-button');
 
-    // create placeholder button
-    const randomButton = document.createElement('button');
-    randomButton.textContent = 'Randomize the color!';
-    randomButton.classList.add('start-button');
-
 
 
     // append the items
-    container.appendChild(playerVsComputerButton);
+    container.appendChild(playerVsComputerButtonNormal);
+    container.appendChild(playerVsComputerButtonEasy);
     container.appendChild(playerVsPlayerButton);
-    container.appendChild(randomButton);
     body.appendChild(header);
     body.appendChild(container);
 
     // load the player vs computer
-    playerVsComputerButton.addEventListener('click', function(){
-        loadVsComputer();
+    playerVsComputerButtonNormal.addEventListener('click', function(){
+        loadVsComputer(false);
     });
+
+    playerVsComputerButtonEasy.addEventListener('click', function(){
+        loadVsComputer(true);
+    })
 
     // load the player vs player
     playerVsPlayerButton.addEventListener('click', function(){
         loadVsPlayer();
-    });
-
-    // randomize body color
-    randomButton.addEventListener('click', function(){
-        const red = Math.floor(Math.random() * 256);
-        const green = Math.floor(Math.random() * 256);
-        const blue = Math.floor(Math.random() * 256);
-
-        const color = `rgb(${red},${green},${blue})`;
-
-        body.style.backgroundColor = color;
     });
 }

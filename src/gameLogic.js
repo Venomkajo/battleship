@@ -40,6 +40,11 @@ export function computerTurn(gameboard, hitInfo){
                 possibilities = [[1,0], [-1,0], [0,1], [0,-1]];
             }
 
+            for (let i = 0; i < possibilities.length; i++) {
+                let random = Math.floor(Math.random() * possibilities.length);
+                [possibilities[i], possibilities[random]] = [possibilities[random], possibilities[i]];
+            }
+
             // for every possibility attempt to attack
             for (const possibility of possibilities){
                 const X = lastRow + possibility[0];
@@ -65,7 +70,7 @@ export function computerTurn(gameboard, hitInfo){
 }
 
 // generate a random value and attack with it until the board accepts the hit
-function fireAtRandom(gameboard){
+export function fireAtRandom(gameboard){
     let randomRow = '';
     let randomColumn = '';
     let selectedShip = '';

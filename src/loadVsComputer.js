@@ -2,11 +2,11 @@ import { gameboard } from "./gameboard.js";
 import { player } from './player.js';
 import { updateEnemyGrid, updatePlayerGrid } from './updateDisplay.js';
 import { createGrid } from './createDisplay.js';
-import { computerTurn } from './gameLogic.js';
+import { computerTurn, fireAtRandom } from './gameLogic.js';
 import { createVsComputer } from "./createVsComputer.js";
 
 // main function
-export function loadVsComputer(){
+export function loadVsComputer(easyDifficulty){
 
     // create the html
     createVsComputer();
@@ -86,7 +86,11 @@ export function loadVsComputer(){
                         }
 
                         // if the computer move is successful move forward
-                        hitInfo = computerTurn(playerOne.gameboard, hitInfo);
+                        if (!easyDifficulty){
+                            hitInfo = computerTurn(playerOne.gameboard, hitInfo);
+                        } else {
+                            hitInfo = fireAtRandom(playerOne.gameboard);
+                        }
                         if (hitInfo){
                             turn = true;
                         } else {

@@ -1,3 +1,10 @@
+@import url(https://fonts.bunny.net/css?family=alatsi:400);
+
+*
+{
+    font-family: 'Alatsi', sans-serif;
+}
+
 body
 {
     margin: 0;
@@ -11,6 +18,7 @@ header
     font-size: 48px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 button
