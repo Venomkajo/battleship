@@ -26,23 +26,6 @@ export function loadVsPlayer(){
     updatePlayerGrid(playerOne.gameboard.grid, '.player');
     updateEnemyGrid(playerTwo.gameboard.grid, '.enemy');
     addTileListener(true);
-
-
-    document.getElementById('randomButton').addEventListener('click', function(){
-        // disable button in case of low-end pc
-        document.getElementById('randomButton').disabled = 'true';
-    
-        // randomize the player's board
-        playerOne.gameboard.generateNewBoard();
-        updatePlayerGrid(playerOne.gameboard.grid, '.player');
-        playerTwo.gameboard.generateNewBoard();
-        updateEnemyGrid(playerTwo.gameboard.grid, '.enemy');
-        turn = true;
-        allowed = true;
-    
-        // enable button again
-        document.getElementById('randomButton').disabled = '';
-    });
     
     document.getElementById('resetButton').addEventListener('click', function(){
         // disable buttons in case of low-end pc
@@ -122,7 +105,6 @@ export function loadVsPlayer(){
     }
 
     function playerOneListeners(tile){
-        document.getElementById('randomButton').disabled = 'true';
         // if it's the player's turn
         if (turn && allowed){
             // if an attack was received

@@ -48,10 +48,6 @@ export function createVsPlayer(){
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('buttons');
 
-    const randomButton = document.createElement('button');
-    randomButton.id = 'randomButton';
-    randomButton.textContent = 'Randomize ships';
-
     const switchButton = document.createElement('button');
     switchButton.id = 'switchButton';
     switchButton.textContent = 'Switch player';
@@ -60,7 +56,6 @@ export function createVsPlayer(){
     resetButton.id = 'resetButton';
     resetButton.textContent = 'Reset board';
 
-    buttonsDiv.appendChild(randomButton);
     buttonsDiv.appendChild(switchButton);
     buttonsDiv.appendChild(resetButton);
 
