@@ -30,7 +30,6 @@ export function loadVsPlayer(){
     document.getElementById('resetButton').addEventListener('click', function(){
         // disable buttons in case of low-end pc
         document.getElementById('resetButton').disabled = 'true';
-        document.getElementById('randomButton').disabled = 'true';
     
         // generate new boards
         playerOne.gameboard.generateNewBoard();
@@ -42,7 +41,6 @@ export function loadVsPlayer(){
     
         // enable buttons again
         document.getElementById('resetButton').disabled = '';
-        document.getElementById('randomButton').disabled = '';
     });
 
     const switchBtn = document.getElementById('switchButton');
