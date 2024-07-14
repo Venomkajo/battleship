@@ -51,8 +51,8 @@ export function loadVsComputer(easyDifficulty){
 
         // generate new boards
         playerOne.gameboard.generateNewBoard();
-        updatePlayerGrid(playerOne.gameboard.grid), '.player';
         computerOne.gameboard.generateNewBoard();
+        updatePlayerGrid(playerOne.gameboard.grid, '.player');
         updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
 
         // enable buttons again
@@ -78,10 +78,7 @@ export function loadVsComputer(easyDifficulty){
                         updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
                         if (computerOne.gameboard.checkForWin()){
                             alert('Victory for the player!');
-                            playerOne.gameboard.generateNewBoard();
-                            computerOne.gameboard.generateNewBoard();
-                            updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
-                            updatePlayerGrid(playerOne.gameboard.grid, '.player');
+                            handleVictory();
                             return;
                         }
 
@@ -100,10 +97,7 @@ export function loadVsComputer(easyDifficulty){
                         updatePlayerGrid(playerOne.gameboard.grid, '.player');
                         if (playerOne.gameboard.checkForWin()){
                             alert('Victory for the computer!');
-                            playerOne.gameboard.generateNewBoard();
-                            computerOne.gameboard.generateNewBoard();
-                            updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
-                            updatePlayerGrid(playerOne.gameboard.grid, '.player');
+                            handleVictory();
                             return;
                         }
                     }
@@ -111,4 +105,15 @@ export function loadVsComputer(easyDifficulty){
             })
         })
     }
+
+    function handleVictory(){
+        playerOne.gameboard.generateNewBoard();
+        computerOne.gameboard.generateNewBoard();
+        updateEnemyGrid(computerOne.gameboard.grid, '.enemy');
+        updatePlayerGrid(playerOne.gameboard.grid, '.player');
+        turn = true;
+        document.getElementById('resetButton').disabled = '';
+        document.getElementById('randomButton').disabled = '';
+    }
+
 }
